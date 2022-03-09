@@ -16,7 +16,15 @@
   <% } else { %>
     <ul>
       <% books.forEach(book => { %>
-        <li><%= book.title %> - <%= book.read ? 'you read that already' : 'not read' %> </li>
+        <form 
+          action="/books/<%= book._id %>?_method=DELETE" 
+          method="POST"
+        >
+          <li><%= book.title %> - 
+            <%= book.read ? 'you read that already' : 'not read' %> 
+            <button type="submit">Delete</button>
+          </li>
+        </form>
       <% }) %>
     </ul>
     <a href="/books/new"> Add a new Book</a>

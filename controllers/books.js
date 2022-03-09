@@ -21,7 +21,6 @@ function newBook(req, res) {
 }
 
 function create(req, res) {
-  console.log('CREATE!', req.body)
   Book.create(req.body)
   .then(book => {
     res.redirect('/books')
@@ -32,8 +31,24 @@ function create(req, res) {
   })
 }
 
+function deleteBook(req, res) {
+  console.log('##### DELETE BOOK ######')
+  Book.findById(req.params.id)
+  .then(book => {
+    book.delete()
+    .then(() => {
+      res.redirect('/books')
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/books')
+  })
+}
+
 export {
   index,
   newBook as new,
-  create
+  create,
+  deleteBook as delete
 }

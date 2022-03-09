@@ -9,6 +9,9 @@ router.get('/new', booksCtrl.new)
 
 router.post('/', booksCtrl.create)
 
+// DELETE - localhost:3000/books/:id
+router.delete('/:id', booksCtrl.delete)
+
 export {
   router
 }
